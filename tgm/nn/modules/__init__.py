@@ -15,7 +15,35 @@ from .aggregation import (
     SumEmbdPooling,
 )
 
+from .edgeremind import EdgeReMINDPredictor, EdgeReMINDTrainer
+from .edgeremind_index import (
+    EdgeReMINDIndex,
+    calibrate_bank_lambdas,
+    parallel_extract_features,
+    extract_training_features,
+    parallel_evaluate,
+)
+from .edgeremind_benchmark import (
+    build_full_index,
+    train_parallel,
+    train_learned,
+    evaluate_parallel,
+    evaluate_parallel_multi,
+)
+
 __all__ = [
+    'EdgeReMINDPredictor',
+    'EdgeReMINDTrainer',
+    'EdgeReMINDIndex',
+    'calibrate_bank_lambdas',
+    'parallel_extract_features',
+    'extract_training_features',
+    'parallel_evaluate',
+    'build_full_index',
+    'train_parallel',
+    'train_learned',
+    'evaluate_parallel',
+    'evaluate_parallel_multi',
     'Time2Vec',
     'TemporalAttention',
     'EdgeBankPredictor',
