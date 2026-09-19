@@ -14,3 +14,4 @@ from .hook_manager import HookManager
 from .recipe import RecipeRegistry
 from .node_tracks import EdgeEventsSeenNodesTrackHook
 from .analytics import BatchAnalyticsHook, NodeAnalyticsHook
+from .edgeremind import EdgeReMINDFeatureHook
