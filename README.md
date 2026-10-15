@@ -6,6 +6,8 @@
 
 <h3 style="font-size: 22px">A Scalable, Top-Ranked Memorization Baseline for Temporal Multi-Relational Link Prediction</h3>
 
+<p><strong>Accepted at the Fifth Learning on Graphs Conference (LoG 2026), Proceedings Track</strong></p>
+
 <br/>
 
 <img src="./EdgeReMINDLeaderBoard.png" alt="EdgeReMIND test MRR against the strongest EdgeBank and non-EdgeBank competitors on the TGB 2.0 leaderboard" width="90%">
@@ -28,12 +30,12 @@ The result is a model that fits at most a `|R| × 15` weight matrix &mdash; fewe
 - **Runs where others can't**: the only relation-aware method that runs on all eight datasets, including the three largest graphs where embedding methods exhaust memory.
 - **Tiny parameter budget**: one 15-dimensional weight vector per relation type and nothing else; the footprint grows only with the number of relation types, not with nodes, edges, or timestamps.
 - **Data-calibrated, no per-dataset tuning**: the multi-timescale bank's decay rates are calibrated automatically from each dataset's gap distribution; the two hand-set constants (γ = 2, n = 3) are held fixed across all eight datasets.
-- **Per-relation specialization**: a separate 15-dimensional linear model per relation type is the primary driver of accuracy — this is what lifts a memorization baseline to the embedding-method ceiling.
+- **Per-relation specialization**: a separate 15-dimensional linear model per relation type, learned rather than hand-set — this is what lifts a memorization baseline to the embedding-method ceiling.
 
 ## Installation
 
 > [!NOTE]
-> This repository is a copy of the [TGM library](https://github.com/tgm-team/tgm) with EdgeReMIND added to it, so it is self-contained: installing it installs TGM together with the EdgeReMIND method and examples. TGM is included under its original license (see [License & Attribution](#license--attribution)). EdgeReMIND is intended for upstream contribution to TGM after peer review and publication.
+> This repository is a copy of the [TGM library](https://github.com/tgm-team/tgm) with EdgeReMIND added to it, so it is self-contained: installing it installs TGM together with the EdgeReMIND method and examples. TGM is included under its original license (see [License & Attribution](#license--attribution)). EdgeReMIND is intended for upstream contribution to TGM.
 
 ### Requirements
 
@@ -55,12 +57,11 @@ Exact versions are pinned in `pyproject.toml` and locked in `uv.lock`, so `uv sy
 
 #### From Source (recommended)
 
-> [!NOTE]
-> During double-blind review this repository is hosted as an anonymized mirror. Download the repository as a ZIP from the anonymous link (`https://anonymous.4open.science/r/EdgeReMIND-31B1/`), unpack it, and install from the unpacked directory using either option below:
+Clone the repository and install from the cloned directory using either option below:
 
 ```sh
-unzip EdgeReMIND-*.zip
-cd EdgeReMIND-*/
+git clone https://github.com/BryantPollard/EdgeReMIND.git
+cd EdgeReMIND
 ```
 
 **Option 1 — `uv` (recommended for exact reproduction).** This project ships a `uv.lock`, so [`uv`](https://docs.astral.sh/uv/) installs the exact locked dependency versions for a deterministic environment (this is how TGM is built). Install `uv` if you don't have it (`curl -LsSf https://astral.sh/uv/install.sh | sh`), then:
@@ -219,9 +220,29 @@ EdgeReMIND is evaluated on all eight TGB&nbsp;2.0 datasets — four temporal het
 
 Note that MRR values are **not comparable across datasets**: the evaluation protocol (1-vs-all, 1-vs-q node-type, or 1-vs-1k edge-type) is fixed per dataset by the benchmark, so a lower score on one dataset (e.g., `tkgl-icews`) does not indicate weaker performance than a higher score on another — the comparison that matters is method-vs-method _within_ each column.
 
+## Citation
+
+If you use EdgeReMIND, please cite the LoG 2026 paper:
+
+```bibtex
+@InProceedings{pollard2026edgeremind,
+  title     = {EdgeReMIND: A Scalable, Top-Ranked Memorization Baseline
+               for Temporal Multi-Relational Link Prediction},
+  author    = {Pollard, Bryant},
+  booktitle = {Proceedings of the Fifth Learning on Graphs Conference},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {338},
+  year      = {2026},
+  publisher = {PMLR}
+}
+```
+
+> [!NOTE]
+> Page numbers and the PMLR URL are assigned when volume 338 is published after the conference; this entry will be updated with them at that time.
+
 ## Acknowledgements
 
-EdgeReMIND is implemented within a copy of the [TGM library](https://github.com/tgm-team/tgm), so that feature extraction, calibration, per-relation learning, and evaluation all run on the benchmark's common framework. It is evaluated against the [Temporal Graph Benchmark (TGB 2.0)](https://tgb.complexdatalab.com/) using its public evaluation protocol; all reported numbers are from this independent evaluation, and an official evaluation by the TGB team is planned. EdgeReMIND is intended for upstream contribution to TGM after peer review and publication.
+EdgeReMIND is implemented within a copy of the [TGM library](https://github.com/tgm-team/tgm), so that feature extraction, calibration, per-relation learning, and evaluation all run on the benchmark's common framework. It is evaluated against the [Temporal Graph Benchmark (TGB 2.0)](https://tgb.complexdatalab.com/) using its public evaluation protocol; all reported numbers are from this independent evaluation, and an official evaluation by the TGB team is planned. EdgeReMIND is intended for upstream contribution to TGM.
 
 ## Implementation Files
 
@@ -291,6 +312,6 @@ The EdgeReMIND-specific additions in this repository are released under the MIT 
 
 ## Contributing
 
-Contributions are welcome once the code is public. During review, this repository is provided as an anonymized mirror; contribution and issue links will be added upon de-anonymization.
+Contributions are welcome. Please open an issue or pull request at [github.com/BryantPollard/EdgeReMIND](https://github.com/BryantPollard/EdgeReMIND).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
